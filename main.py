@@ -34,10 +34,7 @@ while guessing:
     state_exist  = (data_file['state'] == answer).any()
 
     if answer == 'Exit':
-        missing_states = []
-        for state in all_states:
-            if state not in total_guessed:
-                missing_states.append(state)
+        missing_states = [state for state in all_states  if state not in total_guessed]
         new_data = pandas.DataFrame(missing_states)
         new_data.to_csv('states_to_learn.csv')
         guessing = False
